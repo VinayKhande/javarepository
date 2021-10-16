@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.springweb.model.Product;
 import com.example.springweb.repositories.ProductRepository;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class ProductRestController {
 	
@@ -25,6 +27,11 @@ public class ProductRestController {
 	
 	private static Logger LOGGER=LoggerFactory.getLogger(ProductRestController.class);
 
+	@ApiOperation(value = "Retrieves All Products", 
+			notes="A list of Products",
+			response=Product.class,
+			responseContainer="List", 
+			produces="application/json")
 	@RequestMapping(value="/products/",method=RequestMethod.GET)
 	public List<Product> getProducts() {
 		return repo.findAll();
